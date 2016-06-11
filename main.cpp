@@ -132,7 +132,7 @@ int main()
         cout << "Perform another calculation? (y or n)" << endl;
         cin >> cont;
     } while(cont != 'n');
-    //I may have the program run in a while, or do/while loop.
+    
 
     return 0;
 }
