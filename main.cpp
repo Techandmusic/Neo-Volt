@@ -1,44 +1,20 @@
 #include <iostream>
 #include <cstdlib>
+
 using namespace std;
 
 
-// variables to be used in the program
-double result, valueA, valueB, valA, valB;
-int choice;
-char cont;
-
-//functions to perform the calculations
-
-double mult(double valueA, double valueB) {
-    result = valueA * valueB;
-    return result;
-}
-
-double div(double valueA, double valueB) {
-    result = valueA / valueB;
-    return result;
-}
+// function that prompts the user for values to be calculated
 
 
 
-// functions that prompt the user for values to be calculated
 
-
-double getValueA(string unit) {
+double getValue(string unit) {
+    double value;
     cout << "Enter " << unit << ": " << endl;
-    cin >> valA;
-    cout << endl;
-    return valA;
+    cin >> value;
+    return value;
 }
-
-double getValueB(string unit) {
-    cout << "Enter " << unit << ": " << endl;
-    cin >> valB;
-    cout << endl;
-    return valB;
-}
-
 
 
 void title() {
@@ -67,52 +43,54 @@ void showMenu() {
 
 }
 //Shows results of the calculation
-void displayResult(string units) {
+void displayResult(double result, string units) {
     cout << result << " " << units;
     cout << endl << endl;
 
 }
 // Takes the users choice and calls functions accordingly
 void processMenu() {
+    int choice;
+    double amps, ohms, watts, volts;
     cin >> choice;
     switch(choice) {
     case 0:
         exit(0);
     case 1:
-        getValueA("Amps");
-        getValueB("Ohms");
-        mult(valA, valB);
-        displayResult("Volts");
+        amps = getValue("Amps");
+        ohms = getValue("Ohms");
+
+        displayResult(amps * ohms, "Volts");
         break;
     case 2:
-        getValueA("Volts");
-        getValueB("Amps");
-        div(valA, valB);
-        displayResult("Ohms");
+        volts = getValue("Volts");
+        amps = getValue("Amps");
+
+        displayResult(volts / amps, "Ohms");
         break;
     case 3:
-        getValueA("Volts");
-        getValueB("Ohms");
-        div(valA, valB);
-        displayResult("Amps");
+        volts = getValue("Volts");
+        ohms = getValue("Ohms");
+
+        displayResult(volts / ohms, "Amps");
         break;
     case 4:
-        getValueA("Volts");
-        getValueB("Amps");
-        mult(valA, valB);
-        displayResult("Watts");
+        volts = getValue("Volts");
+        amps = getValue("Amps");
+
+        displayResult(volts * amps, "Watts");
         break;
     case 5:
-        getValueA("Watts");
-        getValueB("Amps");
-        div(valA, valB);
-        displayResult("Volts");
+        watts = getValue("Watts");
+        amps = getValue("Amps");
+
+        displayResult(watts / amps, "Volts");
         break;
     case 6:
-        getValueA("Watts");
-        getValueB("Volts");
-        div(valA, valB);
-        displayResult("Amps");
+        watts = getValue("Watts");
+        volts = getValue("Volts");
+
+        displayResult(watts / volts, "Amps");
         break;
     default:
         cout << "Invalid choice.";
@@ -125,14 +103,26 @@ void processMenu() {
 
 int main()
 {
+
     title();
-    do {
-        showMenu();
-        processMenu();
-        cout << "Perform another calculation? (y or n)" << endl;
-        cin >> cont;
-    } while(cont != 'n');
-    
+    while(true) {
+    showMenu();
+    processMenu();
+    cout << "Perform another calculation? (y or n)" << endl;
+    char repeat;
+    cin >> repeat;
+    switch(repeat) {
+case 'y':
+
+    break;
+case 'n':
+    exit(0);
+    break;
+default:
+    cout << "Invalid choice, enter 'y' or 'n'." << endl;
+    }
+  }
+
 
     return 0;
 }
