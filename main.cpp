@@ -98,30 +98,34 @@ void processMenu() {
 
 }
 
-
-
-
-int main()
-{
-
-    title();
-    while(true) {
-    showMenu();
-    processMenu();
+void repeater() {
     cout << "Perform another calculation? (y or n)" << endl;
     char repeat;
     cin >> repeat;
     switch(repeat) {
 case 'y':
-
+    showMenu();
+    processMenu();
     break;
 case 'n':
     exit(0);
     break;
 default:
     cout << "Invalid choice, enter 'y' or 'n'." << endl;
-    }
-  }
+ }
+ repeater();
+}
+
+
+int main()
+{
+
+    title();
+    showMenu();
+    processMenu();
+    repeater();
+
+
 
 
     return 0;
