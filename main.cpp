@@ -94,6 +94,7 @@ void processMenu() {
         break;
     default:
         cout << "Invalid choice.";
+        break;
     }
 
 }
@@ -112,6 +113,7 @@ case 'n':
     break;
 default:
     cout << "Invalid choice, enter 'y' or 'n'." << endl;
+    break;
  }
  repeater();
 }
